@@ -1,0 +1,16 @@
+.blog {
+  //   position: relative;
+  .container {
+    max-width: 900px;
+    padding: 72px 15px 15px 0;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog {
+    .container {
+      max-width: 688px;
+    }
+  }
+}

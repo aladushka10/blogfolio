@@ -12,9 +12,8 @@
     flex-direction: row;
     justify-content: space-between;
     width: 496px;
-    // height: 48px;
+
     .tabs {
-      // top: -2px;
       border-bottom: 2px solid transparent;
       min-width: 100px;
       display: flex;
@@ -36,7 +35,6 @@
 
     .tabsActive {
       position: relative;
-      // top: 2px;
 
       border-bottom: 2px solid;
       &:hover {

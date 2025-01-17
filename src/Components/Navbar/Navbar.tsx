@@ -9,7 +9,7 @@ import style from "./Navbar.module.scss"
 import styles from "./Navbar.module.scss"
 import Person from "../Person/Person"
 import { toggleActive } from "../../store/activeSlice"
-// import { checkValidToken, stopTokenUpdate } from "../../store/SignInSlice"
+
 const Navbar = () => {
   const location = useLocation()
   const btnIsActive = (path: string) => location.pathname === path

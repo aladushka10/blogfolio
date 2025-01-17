@@ -10,13 +10,10 @@ const countSlice = createSlice({
   reducers: {
     incrementLike(state) {
       state.likes += 1
-      // state.count = state.count + 1
-      //   state.count += 1;
     },
     incrementDislike(state) {
       state.dislikes += 1
       state.count = state.count + 1
-      //   state.count += 1;
     },
     decrement(state) {
       state.count = state.count - 1

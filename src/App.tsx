@@ -16,6 +16,7 @@ import Success from "./Pages/Success/Success"
 // import NewPassword from "./Pages/NewPassword/NewPassword"
 import PostPage from "./Components/PostCard/PostPage/PostPage"
 import AllPosts from "./Pages/AllPosts/AllPosts"
+import SelectedPost from "./Pages/SelectedPost/SelectedPost"
 const App = () => {
   return (
     <>
@@ -24,8 +25,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts />} />
           {/* <Route path="/posts" element={<Posts />} /> */}
-          {/* <Route path="/posts/:isbn13" element={<Book />} /> */}
-          <Route path="/:isbn13" element={<PostPage />} />
+          <Route path="/posts/:id" element={<SelectedPost />} />
+          <Route path="/:id" element={<SelectedPost />} />
           {/* <Route path="/about-us" element={<AboutUs />} /> */}
           <Route path="about" element={<Navigate to={"/about-us"} />} />
           {/* <Route path="/profile/" element={<Profile />} /> */}

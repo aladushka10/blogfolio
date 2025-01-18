@@ -32,7 +32,16 @@ const PostCardSmall = ({ id, image, text, date, title }: IPostCard) => {
         <div className={style.postCardWrapUp}>
           <div className={style.postCardWrapLeft}>
             <div className={style.postCardDate}>{date}</div>
-            <h2 className={style.postCardTitle}>{title}</h2>
+            <h2 className={style.postCardTitle}>
+              <a
+                className={style.postCardTitleLink}
+                onClick={() => {
+                  navigate(`${id}`)
+                }}
+              >
+                {title}
+              </a>
+            </h2>
           </div>
           <div className={style.postCardWrapRight}>
             <div className={style.imgWrap}>

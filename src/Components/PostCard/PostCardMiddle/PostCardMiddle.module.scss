@@ -29,6 +29,15 @@
         font-size: 18px;
         font-weight: 600;
         line-height: 28px;
+        .postCardTitleLink {
+          &:hover {
+            cursor: pointer;
+            color: rgba(83, 96, 205, 1);
+            &:active {
+              color: rgba(34, 49, 170, 1);
+            }
+          }
+        }
       }
     }
     .postCardWrapRight {
@@ -36,6 +45,7 @@
       flex-direction: column;
 
       .imgWrap {
+        cursor: pointer;
         height: 250px;
         width: 290px;
         overflow: hidden;

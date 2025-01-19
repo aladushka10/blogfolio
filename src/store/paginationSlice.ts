@@ -25,6 +25,7 @@ const paginationSlice = createSlice({
     totalItems: 0,
     currentPage: 1,
     itemsPerPage: 9,
+    searchQueryTitle: "",
     searchQuery: "",
     ordering: "",
     loading: false,
@@ -33,6 +34,9 @@ const paginationSlice = createSlice({
   reducers: {
     setPage: (state, action) => {
       state.currentPage = action.payload
+    },
+    setSearchQueryTitle: (state, action) => {
+      state.searchQueryTitle = action.payload
     },
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload
@@ -57,6 +61,7 @@ const paginationSlice = createSlice({
       })
   },
 })
-export const { setPage, setSearchQuery, setOrdering } = paginationSlice.actions
+export const { setPage, setSearchQuery, setOrdering, setSearchQueryTitle } =
+  paginationSlice.actions
 
 export default paginationSlice.reducer

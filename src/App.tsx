@@ -17,6 +17,7 @@ import Success from "./Pages/Success/Success"
 import PostPage from "./Components/PostCard/PostPage/PostPage"
 import AllPosts from "./Pages/AllPosts/AllPosts"
 import SelectedPost from "./Pages/SelectedPost/SelectedPost"
+import SearchPage from "./Pages/SearchPage/SearchPage"
 const App = () => {
   return (
     <>
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts />} />
+          <Route path="/search" element={<SearchPage />} />
           {/* <Route path="/posts" element={<Posts />} /> */}
           <Route path="/posts/:id" element={<SelectedPost />} />
           <Route path="/:id" element={<SelectedPost />} />

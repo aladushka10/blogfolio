@@ -11,8 +11,9 @@ const Header = () => {
         <div>
           <BurgerMenu />
         </div>
+
+        <Search />
         <div className={style.searchPesonBtn}>
-          <Search />
           <Person username={"Artem Malkin"} />
         </div>
       </div>

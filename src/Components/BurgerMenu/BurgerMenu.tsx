@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { toggleActive } from "../../store/activeSlice"
 
 const BurgerMenu = () => {
-  const { isActive } = useSelector((state: any) => state.active)
+  const { isActive } = useSelector((state) => state.active)
 
   const dispatch = useDispatch()
   return (

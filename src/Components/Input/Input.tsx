@@ -7,7 +7,7 @@ interface IProps {
   type: "text" | "password" | "email"
   placeholder?: string
   value?: string | number | readonly string[] | undefined
-  event?: (event: ChangeEvent<HTMLInputElement>) => void
+  inputEvent?: (inputEvent: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Input = ({
@@ -16,23 +16,19 @@ const Input = ({
   placeholder = "placeholder",
   type,
   value,
-  event,
+  inputEvent,
 }: IProps) => {
-  const [inputField, setInputField] = useState("")
   return (
-    <>
-      <div className={style.inputWrap}>
-        <label className={style.inputLabel}>{title}</label>
-        <input
-          name={name}
-          className={style.input}
-          type={type}
-          placeholder={placeholder}
-          // value={value}
-          onChange={event}
-        />
-      </div>
-    </>
+    <div className={style.inputWrap}>
+      <label className={style.inputLabel}>{title}</label>
+      <input
+        name={name}
+        className={style.input}
+        type={type}
+        placeholder={placeholder}
+        onChange={inputEvent}
+      />
+    </div>
   )
 }
 

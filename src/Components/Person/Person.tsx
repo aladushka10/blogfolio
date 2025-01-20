@@ -14,18 +14,16 @@ const Person = ({ username }: IPerson) => {
       .join("")
   }, [username])
   return (
-    <>
-      <div className={style.personFIO}>
-        <div className={style.personFIOWrap}>
-          <div className={style.personInitials}>
-            <span>{initials}</span>
-          </div>
-          <div className={style.personName}>
-            <span>{username}</span>
-          </div>
+    <div className={style.personFIO}>
+      <div className={style.personFIOWrap}>
+        <div className={style.personInitials}>
+          <span>{initials}</span>
+        </div>
+        <div className={style.personName}>
+          <span>{username}</span>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

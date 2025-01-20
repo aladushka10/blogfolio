@@ -14,17 +14,15 @@ const Textarea = ({
 }: IProps) => {
   const [textArea, setTextArea] = useState("")
   return (
-    <>
-      <div className={style.textareaWrap}>
-        <label className={style.textareaLabel}>{title}</label>
-        <textarea
-          className={style.textarea}
-          placeholder={placeholder}
-          value={textArea}
-          onChange={(e) => setTextArea(e.target.value)}
-        />
-      </div>
-    </>
+    <div className={style.textareaWrap}>
+      <label className={style.textareaLabel}>{title}</label>
+      <textarea
+        className={style.textarea}
+        placeholder={placeholder}
+        value={textArea}
+        onChange={(e) => setTextArea(e.target.value)}
+      />
+    </div>
   )
 }
 

@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import Textarea from "../../Components/Textarea/Textarea"
 import Title from "../../Components/Title/Title"
 import { useDispatch, useSelector } from "react-redux"
-// import { signInUser } from "../../store/SignInSlice"
 
 const SignIn = () => {
   interface ILogin {
@@ -36,17 +35,15 @@ const SignIn = () => {
                 name={"email"}
                 title={"Email"}
                 type={"email"}
-                //value={"Your email"}
                 placeholder="Your email"
-                event={inputHandler}
+                inputEvent={inputHandler}
               />
               <Input
                 name={"password"}
                 title={"Password"}
                 type={"password"}
-                // value={""}
                 placeholder="Your password"
-                event={inputHandler}
+                inputEvent={inputHandler}
               />
 
               <Link to={"/"} className={style.forgotPsw}>

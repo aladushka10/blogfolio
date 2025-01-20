@@ -37,7 +37,7 @@ const PostCard = () => {
     totalItems,
     searchQuery,
     ordering,
-  } = useSelector((state: any) => state.pagination)
+  } = useSelector((state) => state.pagination)
 
   const navigate = useNavigate()
   useEffect(() => {

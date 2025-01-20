@@ -6,14 +6,12 @@ import Tabs from "../../Components/Tabs/Tabs"
 
 const Home = () => {
   return (
-    <>
-      <div className={style.blog}>
-        <div className={style.container}>
-          <Title title={"Blog"} />
-          <Tabs />
-        </div>
+    <div className={style.blog}>
+      <div className={style.container}>
+        <Title title={"Blog"} />
+        <Tabs />
       </div>
-    </>
+    </div>
   )
 }
 export default Home

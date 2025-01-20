@@ -9,7 +9,7 @@ import style from "./Layout.module.scss"
 
 const Layout = () => {
   const [active, setActive] = useState(false)
-  const { theme } = useSelector((state: any) => state.themeInStoreConfiguration)
+  const { theme } = useSelector((state) => state.themeInStoreConfiguration)
 
   useEffect(() => {
     document.body.classList.remove("light-theme", "dark-theme")

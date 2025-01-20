@@ -23,7 +23,7 @@ const Search = () => {
   }, [location.pathname])
 
   const { itemsPerPage, searchQuery, ordering } = useSelector(
-    (state: any) => state.pagination
+    (state) => state.pagination
   )
 
   const [form, setFormOpen] = useState(false)
@@ -40,41 +40,38 @@ const Search = () => {
     dispatch(setPage(1))
     dispatch(setSearchQueryTitle(searchQuery))
     dispatch(setSearchQuery(""))
-    // dispatch(setSearchQuery(searchQuery))
   }
   const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     dispatch(setSearchQuery(value))
   }
   return (
-    <>
-      <div className={style.searchWrap}>
-        {form && (
-          <form className={style.searchForm} onSubmit={handlerSubmit}>
-            <input
-              className={style.searchInput}
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={handlerInput}
-            />
-            <Cancel
-              onClick={() => setFormOpen(false)}
-              className={style.searchCancel}
-            />
-          </form>
-        )}
-        <button
-          onClick={() => {
-            setFormOpen(true)
-            navigate("/search")
-          }}
-          className={style.searchBtn}
-        >
-          <SearchBtn />
-        </button>
-      </div>
-    </>
+    <div className={style.searchWrap}>
+      {form && (
+        <form className={style.searchForm} onSubmit={handlerSubmit}>
+          <input
+            className={style.searchInput}
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handlerInput}
+          />
+          <Cancel
+            onClick={() => setFormOpen(false)}
+            className={style.searchCancel}
+          />
+        </form>
+      )}
+      <button
+        onClick={() => {
+          setFormOpen(true)
+          navigate("/search")
+        }}
+        className={style.searchBtn}
+      >
+        <SearchBtn />
+      </button>
+    </div>
   )
 }
 export default Search

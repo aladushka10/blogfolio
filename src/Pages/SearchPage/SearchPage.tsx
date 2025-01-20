@@ -31,7 +31,7 @@ interface IPostCard {
 }
 
 const Search = () => {
-  const { likes, dislikes } = useSelector((state: any) => state.counter)
+  const { likes, dislikes } = useSelector((state) => state.counter)
   const dispatch = useDispatch()
   const {
     posts,
@@ -42,10 +42,10 @@ const Search = () => {
     totalItems,
     searchQuery,
     ordering,
-  } = useSelector((state: any) => state.pagination)
+  } = useSelector((state) => state.pagination)
 
   const searchQueryTitle = useSelector(
-    (state: any) => state.pagination.searchQueryTitle
+    (state) => state.pagination.searchQueryTitle
   )
 
   const navigate = useNavigate()
@@ -101,101 +101,99 @@ const Search = () => {
   }
 
   return (
-    <>
-      <div className={style.searchWrap}>
-        <div className={style.container}>
-          <Title title={`Search results "${searchQueryTitle}"`} />
-          <div className={style.postsCardWrap}>
-            {posts.map(({ id, image, date, text, title, index }: IPostCard) => (
-              <div key={id}>
-                <div className={style.postCardWrap}>
-                  <div className={style.imgTitleWrap}>
-                    <div className={style.imgWrap}>
-                      <img className={style.postCardImg} src={image}></img>
+    <div className={style.searchWrap}>
+      <div className={style.container}>
+        <Title title={`Search results "${searchQueryTitle}"`} />
+        <div className={style.postsCardWrap}>
+          {posts.map(({ id, image, date, text, title, index }: IPostCard) => (
+            <div key={id}>
+              <div className={style.postCardWrap}>
+                <div className={style.imgTitleWrap}>
+                  <div className={style.imgWrap}>
+                    <img className={style.postCardImg} src={image}></img>
+                  </div>
+                  <div className={style.dateTitleWrap}>
+                    <div className={style.postCardDate}>{date}</div>
+                    <div className={style.postCardTitle}>{title}</div>
+                  </div>
+                </div>
+                <div className={style.postCardWrapDown}>
+                  <div className={style.thumbsWrap}>
+                    <div className={style.thumbsUpWrap}>
+                      <FontAwesomeIcon
+                        onClick={() => dispatch(incrementLike())}
+                        cursor={"pointer"}
+                        icon={faThumbsUp}
+                        style={{ fontSize: "25px" }}
+                      />
+                      <div>{likes}</div>
                     </div>
-                    <div className={style.dateTitleWrap}>
-                      <div className={style.postCardDate}>{date}</div>
-                      <div className={style.postCardTitle}>{title}</div>
+                    <div className={style.thumbsDownWrap}>
+                      <FontAwesomeIcon
+                        onClick={() => dispatch(incrementDislike())}
+                        cursor={"pointer"}
+                        icon={faThumbsDown}
+                        style={{ fontSize: "25px" }}
+                      />
+                      <div>{dislikes}</div>
                     </div>
                   </div>
-                  <div className={style.postCardWrapDown}>
-                    <div className={style.thumbsWrap}>
-                      <div className={style.thumbsUpWrap}>
-                        <FontAwesomeIcon
-                          onClick={() => dispatch(incrementLike())}
-                          cursor={"pointer"}
-                          icon={faThumbsUp}
-                          style={{ fontSize: "25px" }}
-                        />
-                        <div>{likes}</div>
-                      </div>
-                      <div className={style.thumbsDownWrap}>
-                        <FontAwesomeIcon
-                          onClick={() => dispatch(incrementDislike())}
-                          cursor={"pointer"}
-                          icon={faThumbsDown}
-                          style={{ fontSize: "25px" }}
-                        />
-                        <div>{dislikes}</div>
-                      </div>
-                    </div>
-                    <div className={style.saveDotsWrap}>
-                      <div className={style.saveDots}>
-                        <FontAwesomeIcon
-                          icon={faBookmark}
-                          style={{ fontSize: "25px" }}
-                          cursor={"pointer"}
-                        />
-                        <FontAwesomeIcon
-                          icon={faEllipsisH}
-                          style={{ fontSize: "25px" }}
-                          cursor={"pointer"}
-                        />
-                      </div>
+                  <div className={style.saveDotsWrap}>
+                    <div className={style.saveDots}>
+                      <FontAwesomeIcon
+                        icon={faBookmark}
+                        style={{ fontSize: "25px" }}
+                        cursor={"pointer"}
+                      />
+                      <FontAwesomeIcon
+                        icon={faEllipsisH}
+                        style={{ fontSize: "25px" }}
+                        cursor={"pointer"}
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+        <div className={style.numbersWrapper}>
+          <div className={style.leftArrowWrap}>
+            <button
+              className={style.leftArrow}
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+            >
+              <LeftArrow className={style.leftArrowSvg} />
+            </button>
+            <button
+              className={style.prevWrap}
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+            >
+              Prev
+            </button>
           </div>
-          <div className={style.numbersWrapper}>
-            <div className={style.leftArrowWrap}>
-              <button
-                className={style.leftArrow}
-                onClick={handlePrevious}
-                disabled={currentPage === 1}
-              >
-                <LeftArrow className={style.leftArrowSvg} />
-              </button>
-              <button
-                className={style.prevWrap}
-                onClick={handlePrevious}
-                disabled={currentPage === 1}
-              >
-                Prev
-              </button>
-            </div>
-            <div className={style.pageNubmers}>{renderPageNumber()}</div>
-            <div className={style.rightArrowWrap}>
-              <button
-                className={style.nextWrap}
-                onClick={handleNext}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
-              <button
-                className={style.rightArrow}
-                onClick={handleNext}
-                disabled={currentPage === totalPages}
-              >
-                <RightArrow className={style.rightArrowSvg} />
-              </button>
-            </div>
+          <div className={style.pageNubmers}>{renderPageNumber()}</div>
+          <div className={style.rightArrowWrap}>
+            <button
+              className={style.nextWrap}
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+            <button
+              className={style.rightArrow}
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+            >
+              <RightArrow className={style.rightArrowSvg} />
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

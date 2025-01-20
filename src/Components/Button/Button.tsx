@@ -5,15 +5,18 @@ interface IProps {
   isDisabled?: boolean
   btnType?: "primary" | "secondary"
   value: string
+  clickAction: () => void
 }
 const Button = ({
   children,
   isDisabled = false,
   btnType = "primary",
   value,
+  clickAction,
 }: IProps) => {
   return (
     <button
+      onClick={clickAction}
       className={
         btnType === "secondary" ? `${style.secondary}` : `${style.primary}`
       }

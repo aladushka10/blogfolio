@@ -11,7 +11,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* position: relative; */
 }
 
 body {
@@ -44,6 +43,4 @@ body.dark-theme button {
 .dark-theme {
   background-color: rgba(49, 48, 55, 1);
   color: white;
-  /* height: 100vh;
-  position: fixed; */
 }

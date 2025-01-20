@@ -43,33 +43,29 @@ const SignUp = () => {
                 name={"username"}
                 title={"Name"}
                 type={"text"}
-                // value={registraionData.username}
                 placeholder="Your name"
-                event={inputHandler}
+                inputEvent={inputHandler}
               />
               <Input
                 name={"email"}
                 title={"Email"}
                 type={"email"}
-                // value={registraionData.email}
                 placeholder="Your email"
-                event={inputHandler}
+                inputEvent={inputHandler}
               />
               <Input
                 name={"password"}
                 title={"Password"}
                 type={"password"}
-                // value={registraionData.password}
                 placeholder="Your password"
-                event={inputHandler}
+                inputEvent={inputHandler}
               />
               <Input
                 name={"confirm_password"}
                 title={"Confirm password"}
                 type={"password"}
-                // value={registraionData.password}
                 placeholder="Confirm password"
-                event={inputHandler}
+                inputEvent={inputHandler}
               />
               <button className={style.SignUpBtn}>Sign Up</button>
               <div className={style.withoutAccWrap}>

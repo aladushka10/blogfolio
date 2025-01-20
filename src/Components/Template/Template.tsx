@@ -7,16 +7,14 @@ interface IProps {
 
 const Template = ({ title }: IProps) => {
   return (
-    <>
-      <div className={style.blog}>
-        <div className={style.container}>
-          <Link className={style.backHomeBtn} to={"/"}>
-            Back to Home
-          </Link>
-          <Title title={title} />
-        </div>
+    <div className={style.blog}>
+      <div className={style.container}>
+        <Link className={style.backHomeBtn} to={"/"}>
+          Back to Home
+        </Link>
+        <Title title={title} />
       </div>
-    </>
+    </div>
   )
 }
 export default Template

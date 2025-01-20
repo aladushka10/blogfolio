@@ -22,7 +22,7 @@ const Navbar = () => {
     closeSlideBar()
   }
 
-  const { isActive } = useSelector((state: any) => state.active)
+  const { isActive } = useSelector((state) => state.active)
 
   return (
     <div

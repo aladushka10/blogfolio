@@ -16,13 +16,12 @@ const Navbar = () => {
   const theme = useContext(ThemeContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { isActive } = useSelector((state) => state.active)
 
   const signInHandler = () => {
     navigate("/sign-in", { state: { from: location } })
     closeSlideBar()
   }
-
-  const { isActive } = useSelector((state) => state.active)
 
   return (
     <div

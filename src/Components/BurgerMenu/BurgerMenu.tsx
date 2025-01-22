@@ -15,7 +15,7 @@ const BurgerMenu = () => {
       onClick={() => dispatch(toggleActive())}
       className={style.burgerBtn}
     >
-      {!isActive ? <Menu /> : <Cancel />}
+      {!isActive ? <Menu /> : <Cancel className={style.cancel} />}
     </button>
   )
 }

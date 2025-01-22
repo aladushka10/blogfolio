@@ -10,6 +10,18 @@
   .blog {
     .container {
       max-width: 688px;
+      padding: 0;
+      margin: auto;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .blog {
+    .container {
+      max-width: 270px;
+      padding: 0;
+      margin: auto;
     }
   }
 }

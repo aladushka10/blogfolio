@@ -131,7 +131,7 @@ const PostCard = () => {
             if (index >= 1 && index % 4 === 1) {
               return (
                 <div key={id} className={style.postCardWrap}>
-                  <div className={style.postCardWrapMainandLittle}>
+                  <div className={style.postCardWrapMiddleandLittle}>
                     <div className={style.postCardWrapMiddles}>
                       {posts
                         .slice(index, index + 2)

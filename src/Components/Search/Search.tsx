@@ -11,6 +11,14 @@ import {
 import { ReactComponent as Cancel } from "../../assets/cancelIcon.svg"
 import { useEffect, useState } from "react"
 
+interface IPagination {
+  pagination: {
+    itemsPerPage: number
+    searchQuery: string
+    ordering: string
+  }
+}
+
 const Search = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -23,7 +31,7 @@ const Search = () => {
   }, [location.pathname])
 
   const { itemsPerPage, searchQuery, ordering } = useSelector(
-    (state) => state.pagination
+    (state: IPagination) => state.pagination
   )
 
   const [form, setFormOpen] = useState(false)

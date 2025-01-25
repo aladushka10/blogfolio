@@ -22,9 +22,16 @@ interface IPostCard {
   close: () => void
 }
 
+interface ICounter {
+  counter: {
+    likes: number
+    dislikes: number
+  }
+}
+
 const PopUp = ({ id, image, text, date, title, close }: IPostCard) => {
   const navigate = useNavigate()
-  const { likes, dislikes } = useSelector((state) => state.counter)
+  const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
 
   const dispatch = useDispatch()
   useEffect(() => {

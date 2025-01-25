@@ -22,11 +22,25 @@ interface IPostCard {
   isFavorite: boolean
 }
 
+interface ICounter {
+  counter: {
+    likes: number
+    dislikes: number
+  }
+}
+
+interface IPopUp {
+  popUp: {
+    isOpen: boolean
+    postId: null
+  }
+}
+
 const PostCardBig = ({ id, image, text, date, title }: IPostCard) => {
   const navigate = useNavigate()
-  const { likes, dislikes } = useSelector((state) => state.counter)
+  const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
   const dispatch = useDispatch()
-  const { isOpen, postId } = useSelector((state) => state.popUp)
+  const { isOpen, postId } = useSelector((state: IPopUp) => state.popUp)
 
   return (
     <div className={style.postCardWrapMain}>

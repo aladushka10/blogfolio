@@ -19,6 +19,8 @@ import {
   setSearchQuery,
 } from "../../store/paginationSlice"
 import Title from "../../Components/Title/Title"
+import { openPopUp, closePopUp } from "../../store/popUpSlice"
+import PopUp from "../../Components/PopUp/PopUp"
 
 interface IPostCard {
   id: number
@@ -30,9 +32,26 @@ interface IPostCard {
   isFavorite: boolean
 }
 
+interface ICounter {
+  counter: {
+    likes: number
+    dislikes: number
+  }
+}
+
+interface IPopUp {
+  popUp: {
+    isOpen: boolean
+    postId: null
+  }
+}
+
 const Search = () => {
-  const { likes, dislikes } = useSelector((state) => state.counter)
+  const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
   const dispatch = useDispatch()
+
+  const { isOpen, postId } = useSelector((state: IPopUp) => state.popUp)
+
   const {
     posts,
     loading,
@@ -110,7 +129,22 @@ const Search = () => {
               <div className={style.postCardWrap}>
                 <div className={style.imgTitleWrap}>
                   <div className={style.imgWrap}>
-                    <img className={style.postCardImg} src={image}></img>
+                    <img
+                      className={style.postCardImg}
+                      onClick={() => dispatch(openPopUp(id))}
+                      src={image}
+                    />
+                    {isOpen && postId === id && (
+                      <PopUp
+                        id={id}
+                        image={image}
+                        date={date}
+                        title={title}
+                        text={text}
+                        isFavorite={false}
+                        close={() => dispatch(closePopUp())}
+                      />
+                    )}
                   </div>
                   <div className={style.dateTitleWrap}>
                     <div className={style.postCardDate}>{date}</div>

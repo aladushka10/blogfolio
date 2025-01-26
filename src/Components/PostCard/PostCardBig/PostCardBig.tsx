@@ -10,6 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux"
 import { incrementDislike, incrementLike } from "../../../store/counterSlice"
+import PopUp from "../../PopUp/PopUp"
+import { openPopUp, closePopUp } from "../../../store/popUpSlice"
 
 interface IPostCard {
   id: number
@@ -20,16 +22,32 @@ interface IPostCard {
   isFavorite: boolean
 }
 
+interface ICounter {
+  counter: {
+    likes: number
+    dislikes: number
+  }
+}
+
+interface IPopUp {
+  popUp: {
+    isOpen: boolean
+    postId: null
+  }
+}
+
 const PostCardBig = ({ id, image, text, date, title }: IPostCard) => {
   const navigate = useNavigate()
-  const { likes, dislikes } = useSelector((state) => state.counter)
+  const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
   const dispatch = useDispatch()
+  const { isOpen, postId } = useSelector((state: IPopUp) => state.popUp)
 
   return (
     <div className={style.postCardWrapMain}>
       <div className={style.postCardWrapUp}>
         <div className={style.postCardWrapLeft}>
           <div className={style.postCardDate}>{date}</div>
+
           <h2 className={style.postCardTitle}>
             <a
               className={style.postCardTitleLink}
@@ -46,11 +64,20 @@ const PostCardBig = ({ id, image, text, date, title }: IPostCard) => {
           <div className={style.imgWrap}>
             <img
               className={style.postCardImg}
-              onClick={() => {
-                navigate(`${id}`)
-              }}
+              onClick={() => dispatch(openPopUp(id))}
               src={image}
-            ></img>
+            />
+            {isOpen && postId === id && (
+              <PopUp
+                id={id}
+                image={image}
+                date={date}
+                title={title}
+                text={text}
+                isFavorite={false}
+                close={() => dispatch(closePopUp())}
+              />
+            )}
           </div>
         </div>
       </div>

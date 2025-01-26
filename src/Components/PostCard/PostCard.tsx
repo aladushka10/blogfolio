@@ -25,6 +25,19 @@ interface IPostCard {
   title: string
   isFavorite: boolean
 }
+interface IPagination {
+  pagination: {
+    posts: IPostCard[]
+    totalItems: number
+    currentPage: number
+    itemsPerPage: number
+    searchQueryTitle: string
+    searchQuery: string
+    ordering: string
+    loading: boolean
+    error: string | null
+  }
+}
 
 const PostCard = () => {
   const dispatch = useDispatch()
@@ -37,7 +50,7 @@ const PostCard = () => {
     totalItems,
     searchQuery,
     ordering,
-  } = useSelector((state) => state.pagination)
+  } = useSelector((state: IPagination) => state.pagination)
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -131,7 +144,7 @@ const PostCard = () => {
             if (index >= 1 && index % 4 === 1) {
               return (
                 <div key={id} className={style.postCardWrap}>
-                  <div className={style.postCardWrapMainandLittle}>
+                  <div className={style.postCardWrapMiddleandLittle}>
                     <div className={style.postCardWrapMiddles}>
                       {posts
                         .slice(index, index + 2)

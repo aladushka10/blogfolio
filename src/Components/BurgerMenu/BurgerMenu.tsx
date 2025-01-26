@@ -6,8 +6,14 @@ import style from "./BurgerMenu.module.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleActive } from "../../store/activeSlice"
 
+interface IActive {
+  active: {
+    isActive: boolean
+  }
+}
+
 const BurgerMenu = () => {
-  const { isActive } = useSelector((state) => state.active)
+  const { isActive } = useSelector((state: IActive) => state.active)
 
   const dispatch = useDispatch()
   return (
@@ -15,7 +21,7 @@ const BurgerMenu = () => {
       onClick={() => dispatch(toggleActive())}
       className={style.burgerBtn}
     >
-      {!isActive ? <Menu /> : <Cancel />}
+      {!isActive ? <Menu /> : <Cancel className={style.cancel} />}
     </button>
   )
 }

@@ -14,12 +14,37 @@ import { incrementDislike, incrementLike } from "../../store/counterSlice"
 
 import { getPostInfo } from "../../store/selectedPostSlice"
 
+interface IPostCard {
+  id: number
+  image?: string
+  text?: string
+  date: string
+  title: string
+  isFavorite: boolean
+}
+
+interface IPagination {
+  pagination: {
+    posts: IPostCard[]
+  }
+}
+
+interface ISelectedPost {
+  selectedPost: {
+    post: IPostCard
+    previousPost: null
+    loading: boolean
+    error: string | null
+  }
+}
 const SelectedPost = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { post, loading, error } = useSelector((state) => state.selectedPost)
-  const { posts } = useSelector((state) => state.pagination)
+  const { post, loading, error } = useSelector(
+    (state: ISelectedPost) => state.selectedPost
+  )
+  const { posts } = useSelector((state: IPagination) => state.pagination)
   const previousPost = posts.find((p: any) => p.id === post.id - 1)
   const nextPost = posts.find((p: any) => p.id === post.id + 1)
 

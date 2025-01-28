@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { incrementDislike, incrementLike } from "../../../store/counterSlice"
 import PopUp from "../../PopUp/PopUp"
 import { openPopUp, closePopUp } from "../../../store/popUpSlice"
+import { selectPost } from "../../../store/postSlice"
 
 interface IPostCard {
   id: number
@@ -104,11 +105,18 @@ const PostCardMiddle = ({ id, image, text, date, title }: IPostCard) => {
         </div>
         <div className={style.saveDotsWrap}>
           <div className={style.saveDots}>
-            <FontAwesomeIcon
-              icon={faBookmark}
-              style={{ fontSize: "25px" }}
-              cursor={"pointer"}
-            />
+            <button
+              onClick={() => {
+                dispatch(selectPost({ id, image, text, date, title }))
+                navigate("/my-favorite")
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faBookmark}
+                style={{ fontSize: "25px" }}
+                cursor={"pointer"}
+              />
+            </button>
             <FontAwesomeIcon
               icon={faEllipsisH}
               style={{ fontSize: "25px" }}

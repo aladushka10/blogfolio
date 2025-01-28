@@ -2,24 +2,39 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import Input from "../../Components/Input/Input"
 import style from "./SignIn.module.scss"
 import { useEffect, useState } from "react"
-import Textarea from "../../Components/Textarea/Textarea"
 import Title from "../../Components/Title/Title"
 import { useDispatch, useSelector } from "react-redux"
+import { signInUser } from "../../store/SignInSlice"
+
+interface ILogin {
+  email: string
+  password: string
+}
 
 const SignIn = () => {
-  interface ILogin {
-    email: string
-    password: string
-  }
   const [loginData, setLoginData] = useState<ILogin>({
     email: "",
     password: "",
   })
+
   const { pathname } = (useLocation().state || { from: "/" }).from
+  const { auth } = useSelector((state) => state.signIn)
+  const navigate = useNavigate()
+
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setLoginData((prev) => ({ ...prev, [name]: value }))
   }
+  const dispatch = useDispatch()
+  const formHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    dispatch(signInUser(loginData))
+  }
+  useEffect(() => {
+    if (auth) {
+      navigate(pathname, { replace: true })
+    }
+  }, [auth])
 
   return (
     <div className={style.signIn}>
@@ -30,7 +45,7 @@ const SignIn = () => {
           </Link>
           <Title title={"Sign In"} />
           <div className={style.signInFormBorder}>
-            <form className={style.signInForm}>
+            <form className={style.signInForm} onSubmit={formHandler}>
               <Input
                 name={"email"}
                 title={"Email"}
@@ -45,11 +60,19 @@ const SignIn = () => {
                 placeholder="Your password"
                 inputEvent={inputHandler}
               />
-
               <Link to={"/"} className={style.forgotPsw}>
-                Forgor password?
+                Forgot password?
               </Link>
-              <button className={style.signInBtn}>Sign In</button>
+              <button
+                onClick={() => {
+                  navigate("/success")
+                }}
+                type="submit"
+                className={style.signInBtn}
+              >
+                Sign In
+              </button>
+
               <div className={style.withoutAccWrap}>
                 <span>Don’t have an account?</span>
                 <Link to={"/sign-up"} className={style.signUpBtn}>

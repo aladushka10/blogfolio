@@ -13,6 +13,7 @@ import SelectedPost from "./Pages/SelectedPost/SelectedPost"
 import SearchPage from "./Pages/SearchPage/SearchPage"
 import ResetPassword from "./Pages/ResetPassword/ResetPassword"
 import NewPassword from "./Pages/NewPassword/NewPassword"
+import MyFavorite from "./Pages/MyFavorite/MyFavourite"
 const App = () => {
   return (
     <>
@@ -27,9 +28,18 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route
-            path="/registration-confirm"
+            path="my-favorite"
+            element={
+              <ProtectedRoute>
+                <MyPosts />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="activate/:uid/:token"
             element={<RegistrationConfirmation />}
           />
+          <Route path="/my-favorite" element={<MyFavorite />} />
           <Route path="/success" element={<Success />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password" element={<NewPassword />} />

@@ -1,85 +1,33 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-
-export const signUpUser = createAsyncThunk(
-  "user/signUpUser",
-  async (registraionData, { rejectWithValue }) => {
+export const getUserInfo = createAsyncThunk(
+  "userMe/getUserInfo",
+  async (_, { rejectWithValue }) => {
     try {
-      const responce = await fetch(
-        "https://studapi.teachmeskills.by/auth/users/",
+      const { access } = JSON.parse(localStorage.getItem("token") as string)
+      const response = await fetch(
+        "https://studapi.teachmeskills.by/auth/users/me/",
         {
-          method: "POST",
-          body: JSON.stringify(registraionData),
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer" + access,
           },
         }
       )
-
-      if (!responce.ok) {
-        throw new Error("error is here")
-      }
-      const data = await responce.json()
-
-      return data
-    } catch (error) {
-      return rejectWithValue((error as Error).message)
-    }
-  }
-)
-export const activateUser = createAsyncThunk(
-  "user/signUpUser",
-  async (tokenData, { rejectWithValue }) => {
-    try {
-      const responce = await fetch(
-        "https://studapi.teachmeskills.by/auth/users/activation/",
-        {
-          method: "POST",
-          body: JSON.stringify(tokenData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-
-      if (!responce.ok) {
-        throw new Error("error is here")
-      }
-      const data = await responce.json()
-
-      return true
-    } catch (error) {
-      return rejectWithValue(false)
-    }
+      const data = await response.json()
+    } catch (error) {}
   }
 )
 
-const UserSlice = createSlice({
-  name: "user",
+const userMeSlice = createSlice({
+  name: "userMe",
   initialState: {
-    user: null,
-    error: null as null | string,
-    loading: false,
-    activated: false,
+    userName: "",
+    id: 0,
+    email: "",
+    isLogin: false,
   },
-  reducers: {
-    addUser(state, action) {
-      state.user = action.payload
-    },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(signUpUser.pending, (state) => {
-      state.loading = true
-      state.error = null
-    })
-    builder.addCase(signUpUser.fulfilled, (state, action) => {
-      state.user = action.payload
-      state.error = null
-    })
-    builder.addCase(signUpUser.rejected, (state, action) => {
-      state.user = null
-      state.error = action.payload as string
-    })
-  },
+  reducers: {},
 })
 
-export default UserSlice.reducer
+export default userMeSlice.reducer

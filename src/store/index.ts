@@ -9,6 +9,7 @@ import popUpSlice from "./popUpSlice"
 import UserMeSlice from "./userSlice"
 import SignInSlice from "./SignInSlice"
 import SignUpSlice from "./SignUpSlice"
+import myPostsSlice from "./myPostsSlice"
 
 export default configureStore({
   reducer: {
@@ -22,5 +23,6 @@ export default configureStore({
     // userMe: UserMeSlice,
     signIn: SignInSlice,
     signUp: SignUpSlice,
+    myPosts: myPostsSlice,
   },
 })

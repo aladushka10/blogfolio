@@ -17,6 +17,7 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isActive } = useSelector((state) => state.active)
+  const { auth } = useSelector((state: any) => state.signIn)
 
   const signInHandler = () => {
     navigate("/sign-in", { state: { from: location } })
@@ -46,19 +47,7 @@ const Navbar = () => {
             <p>Home</p>
           </Link>
         </div>
-        <div
-          className={`${style.navbarBtn} ${
-            btnIsActive("/about-us") ? style.active : ""
-          }`}
-        >
-          <Link
-            to="/about-us"
-            className={style.navbarLink}
-            onClick={() => dispatch(toggleActive())}
-          >
-            <p>About us</p>
-          </Link>
-        </div>
+
         <div
           className={`${style.navbarBtn} ${
             btnIsActive("/posts") ? style.active : ""
@@ -72,6 +61,21 @@ const Navbar = () => {
             <p>Posts</p>
           </Link>
         </div>
+        {auth && (
+          <div
+            className={`${style.navbarBtn} ${
+              btnIsActive("/my-posts") ? style.active : ""
+            }`}
+          >
+            <Link
+              to="/my-posts"
+              className={style.navbarLink}
+              onClick={() => dispatch(toggleActive())}
+            >
+              <p>My Posts</p>
+            </Link>
+          </div>
+        )}
       </div>
       <div className={style.themeAndLogOutWrap}>
         <button onClick={theme?.toggleTheme} className={style.themeWrap}>
@@ -95,16 +99,13 @@ const Navbar = () => {
           </div>
         </button>
         <button
-          onClick={() => dispatch(toggleActive())}
+          onClick={() => dispatch(toggleActive(), navigate("/sign-in"))}
           className={style.logOutBtn}
         >
-          Log Out
+          Log In
         </button>
       </div>
     </div>
   )
 }
 export default Navbar
-function closeSlideBar() {
-  throw new Error("Function not implemented.")
-}

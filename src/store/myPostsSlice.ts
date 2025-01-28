@@ -35,18 +35,24 @@ const myPostsSlice = createSlice({
     myPosts: [],
     error: null as null | string,
     isLoading: false,
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 0,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getMyPosts.fulfilled, (state, action) => {
-      ;(state.myPosts = action.payload), (state.isLoading = false)
+      state.myPosts = action.payload
+      state.isLoading = false
     })
     builder.addCase(getMyPosts.pending, (state) => {
-      ;(state.error = null), (state.isLoading = true)
+      state.error = null
+      state.isLoading = true
     })
     builder.addCase(getMyPosts.rejected, (state, action) => {
-      ;(state.error = (action.payload as string) || "error!!!!!!"),
-        (state.isLoading = false)
+      state.error = (action.payload as string) || "error!!!!!!"
+
+      state.isLoading = false
     })
   },
 })

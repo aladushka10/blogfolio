@@ -1,8 +1,16 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useParams } from "react-router-dom"
 import style from "./RegistrationConfirmation.module.scss"
 import Title from "../../Components/Title/Title"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { activateUser } from "../../store/SignUpSlice"
 
 const RegistrationConfirmation = () => {
+  const data = useParams()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(activateUser(data))
+  }, [])
   return (
     <div className={style.registrationConfirmation}>
       <div className={style.container}>

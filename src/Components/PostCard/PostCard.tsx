@@ -108,7 +108,10 @@ const PostCard = () => {
     <>
       <div className={style.postsCardWrap}>
         {posts.map(
-          ({ id, image, date, text, title }: IPostCard, index: number) => {
+          (
+            { id, image, date, text, title, isFavorite }: IPostCard,
+            index: number
+          ) => {
             if (index === 0) {
               return (
                 <div key={id} className={style.postCardWrap}>
@@ -119,22 +122,31 @@ const PostCard = () => {
                       date={date}
                       title={title}
                       text={text}
-                      isFavorite={false}
+                      isFavorite={isFavorite}
                     />
                     <div className={style.postCardWrapLittles}>
                       {posts
                         .slice(1, 3)
-                        .map(({ id, image, date, text, title }: IPostCard) => (
-                          <PostCardSmall
-                            key={id}
-                            id={id}
-                            image={image}
-                            date={date}
-                            title={title}
-                            text={text}
-                            isFavorite={false}
-                          />
-                        ))}
+                        .map(
+                          ({
+                            id,
+                            image,
+                            date,
+                            text,
+                            title,
+                            isFavorite,
+                          }: IPostCard) => (
+                            <PostCardSmall
+                              key={id}
+                              id={id}
+                              image={image}
+                              date={date}
+                              title={title}
+                              text={text}
+                              isFavorite={isFavorite}
+                            />
+                          )
+                        )}
                     </div>
                   </div>
                 </div>
@@ -148,32 +160,50 @@ const PostCard = () => {
                     <div className={style.postCardWrapMiddles}>
                       {posts
                         .slice(index, index + 2)
-                        .map(({ id, image, date, text, title }: IPostCard) => (
-                          <PostCardMiddle
-                            key={id}
-                            id={id}
-                            image={image}
-                            date={date}
-                            title={title}
-                            text={text}
-                            isFavorite={false}
-                          />
-                        ))}
+                        .map(
+                          ({
+                            id,
+                            image,
+                            date,
+                            text,
+                            title,
+                            isFavorite,
+                          }: IPostCard) => (
+                            <PostCardMiddle
+                              key={id}
+                              id={id}
+                              image={image}
+                              date={date}
+                              title={title}
+                              text={text}
+                              isFavorite={isFavorite}
+                            />
+                          )
+                        )}
                     </div>
                     <div className={style.postCardWrapLittles}>
                       {posts
                         .slice(index + 2, index + 4)
-                        .map(({ id, image, date, text, title }: IPostCard) => (
-                          <PostCardSmall
-                            key={id}
-                            id={id}
-                            image={image}
-                            date={date}
-                            title={title}
-                            text={text}
-                            isFavorite={false}
-                          />
-                        ))}
+                        .map(
+                          ({
+                            id,
+                            image,
+                            date,
+                            text,
+                            title,
+                            isFavorite,
+                          }: IPostCard) => (
+                            <PostCardSmall
+                              key={id}
+                              id={id}
+                              image={image}
+                              date={date}
+                              title={title}
+                              text={text}
+                              isFavorite={isFavorite}
+                            />
+                          )
+                        )}
                     </div>
                   </div>
                 </div>

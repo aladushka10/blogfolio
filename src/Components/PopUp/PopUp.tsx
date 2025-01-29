@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux"
 import { incrementDislike, incrementLike } from "../../store/counterSlice"
+import { toggleFavorite } from "../../store/postSlice"
 
 interface IPostCard {
   id: number
@@ -29,7 +30,15 @@ interface ICounter {
   }
 }
 
-const PopUp = ({ id, image, text, date, title, close }: IPostCard) => {
+const PopUp = ({
+  id,
+  image,
+  text,
+  date,
+  title,
+  isFavorite,
+  close,
+}: IPostCard) => {
   const navigate = useNavigate()
   const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
 
@@ -93,11 +102,27 @@ const PopUp = ({ id, image, text, date, title, close }: IPostCard) => {
             </div>
             <div className={style.saveDotsWrap}>
               <div className={style.saveDots}>
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  style={{ fontSize: "25px" }}
-                  cursor={"pointer"}
-                />
+                <button
+                  className={style.faBookmark}
+                  onClick={() => {
+                    dispatch(
+                      toggleFavorite({
+                        id,
+                        image,
+                        text,
+                        date,
+                        title,
+                        isFavorite,
+                      })
+                    )
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    style={{ fontSize: "25px" }}
+                    cursor={"pointer"}
+                  />
+                </button>
                 <FontAwesomeIcon
                   icon={faEllipsisH}
                   style={{ fontSize: "25px" }}

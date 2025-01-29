@@ -5,8 +5,11 @@ import activeSlice from "./activeSlice"
 import paginationSlice from "./paginationSlice"
 import selectedPostSlice from "./selectedPostSlice"
 import popUpSlice from "./popUpSlice"
-// import postSlice from "./postsSlice"
-// import UserMeSlice from "./UserMeSlice"
+import postSlice from "./postSlice"
+import SignInSlice from "./SignInSlice"
+import SignUpSlice from "./SignUpSlice"
+import myPostsSlice from "./myPostsSlice"
+
 export default configureStore({
   reducer: {
     themeInStoreConfiguration: themeSlice,
@@ -15,7 +18,9 @@ export default configureStore({
     pagination: paginationSlice,
     selectedPost: selectedPostSlice,
     popUp: popUpSlice,
-    // posts: postSlice,
-    // UserMe: UserMeSlice,
+    posts: postSlice,
+    signIn: SignInSlice,
+    signUp: SignUpSlice,
+    myPosts: myPostsSlice,
   },
 })

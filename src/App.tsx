@@ -6,13 +6,14 @@ import NotFound from "./Pages/NotFound/NotFound"
 import Layout from "./Pages/Layout/Layout"
 import SignIn from "./Pages/SignIn/SignIn"
 import SignUp from "./Pages/SignUp/SignUp"
-import RegistrationConfirmation from "./Pages/RegistrationConfirmation/RegistrationConfirmation"
 import Success from "./Pages/Success/Success"
 import AllPosts from "./Pages/AllPosts/AllPosts"
 import SelectedPost from "./Pages/SelectedPost/SelectedPost"
 import SearchPage from "./Pages/SearchPage/SearchPage"
 import ResetPassword from "./Pages/ResetPassword/ResetPassword"
 import NewPassword from "./Pages/NewPassword/NewPassword"
+import ProtectedRoute from "./Pages/ProtectedRoute/ProtectedRoute"
+import MyPosts from "./Pages/MyPosts/MyPosts"
 const App = () => {
   return (
     <>
@@ -27,10 +28,14 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route
-            path="/registration-confirm"
-            element={<RegistrationConfirmation />}
+            path="my-posts"
+            element={
+              <ProtectedRoute>
+                <MyPosts />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/success" element={<Success />} />
+          <Route path="activate/:uid/:token" element={<Success />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="*" element={<NotFound />} />

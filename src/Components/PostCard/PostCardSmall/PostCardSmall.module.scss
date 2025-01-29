@@ -97,6 +97,16 @@
         justify-content: space-between;
         align-items: center;
         width: 64px;
+        .faBookmark {
+          background-color: transparent;
+          border: none;
+          &:hover {
+            color: rgba(83, 96, 205, 1);
+          }
+          &:active {
+            color: rgba(34, 49, 170, 1);
+          }
+        }
       }
     }
   }

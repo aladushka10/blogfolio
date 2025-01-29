@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { incrementDislike, incrementLike } from "../../../store/counterSlice"
 import PopUp from "../../PopUp/PopUp"
 import { openPopUp, closePopUp } from "../../../store/popUpSlice"
+import { selectPost, toggleFavorite } from "../../../store/postSlice"
 
 interface IPostCard {
   id: number
@@ -36,7 +37,14 @@ interface IPopUp {
   }
 }
 
-const PostCardMiddle = ({ id, image, text, date, title }: IPostCard) => {
+const PostCardMiddle = ({
+  id,
+  image,
+  text,
+  date,
+  title,
+  isFavorite,
+}: IPostCard) => {
   const navigate = useNavigate()
   const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
   const dispatch = useDispatch()
@@ -73,7 +81,7 @@ const PostCardMiddle = ({ id, image, text, date, title }: IPostCard) => {
                 date={date}
                 title={title}
                 text={text}
-                isFavorite={false}
+                isFavorite={isFavorite}
                 close={() => dispatch(closePopUp())}
               />
             )}
@@ -104,11 +112,27 @@ const PostCardMiddle = ({ id, image, text, date, title }: IPostCard) => {
         </div>
         <div className={style.saveDotsWrap}>
           <div className={style.saveDots}>
-            <FontAwesomeIcon
-              icon={faBookmark}
-              style={{ fontSize: "25px" }}
-              cursor={"pointer"}
-            />
+            <button
+              className={style.faBookmark}
+              onClick={() => {
+                dispatch(
+                  toggleFavorite({
+                    id,
+                    image,
+                    text,
+                    date,
+                    title,
+                    isFavorite,
+                  })
+                )
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faBookmark}
+                style={{ fontSize: "25px" }}
+                cursor={"pointer"}
+              />
+            </button>
             <FontAwesomeIcon
               icon={faEllipsisH}
               style={{ fontSize: "25px" }}

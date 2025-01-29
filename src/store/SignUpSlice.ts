@@ -14,15 +14,11 @@ export const signUpUser = createAsyncThunk(
           },
         }
       )
-      console.log(await responce.text())
-      //   if((await responce.text()).includes('user with this Email already exists.')){
 
-      //   }
       if (!responce.ok) {
         throw new Error("error is here")
       }
       const data = await responce.json()
-      console.log(data)
       return data
     } catch (error) {
       return rejectWithValue((error as Error).message)

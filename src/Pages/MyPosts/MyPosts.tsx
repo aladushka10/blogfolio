@@ -20,10 +20,21 @@ interface IPostCard {
   isFavorite: boolean
 }
 
+interface IMyPost {
+  myPosts: {
+    myPosts: IPostCard[]
+    error: null | string
+    isLoading: boolean
+    currentPage: number
+    itemsPerPage: number
+    totalItems: number
+  }
+}
+
 const MyPosts = () => {
   const dispatch = useDispatch()
   const { myPosts, isLoading, error, currentPage, itemsPerPage, totalItems } =
-    useSelector((state: any) => state.myPosts)
+    useSelector((state: IMyPost) => state.myPosts)
 
   const navigate = useNavigate()
   useEffect(() => {

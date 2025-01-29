@@ -10,14 +10,21 @@ import styles from "./Navbar.module.scss"
 import Person from "../Person/Person"
 import { toggleActive } from "../../store/activeSlice"
 
+interface ISignIn {
+  signIn: { auth: boolean; isLoading: boolean; error: null | string }
+}
+interface IActive {
+  active: { isActive: boolean }
+}
+
 const Navbar = () => {
   const location = useLocation()
   const btnIsActive = (path: string) => location.pathname === path
   const theme = useContext(ThemeContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { isActive } = useSelector((state) => state.active)
-  const { auth } = useSelector((state: any) => state.signIn)
+  const { isActive } = useSelector((state: IActive) => state.active)
+  const { auth } = useSelector((state: ISignIn) => state.signIn)
 
   const signInHandler = () => {
     navigate("/sign-in", { state: { from: location } })

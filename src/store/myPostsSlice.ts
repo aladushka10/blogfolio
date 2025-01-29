@@ -10,7 +10,6 @@ export const getMyPosts = createAsyncThunk(
         {
           method: "GET",
           headers: {
-            // "Content-Type": "application/json",
             Authorization: "Bearer " + JSON.parse(access as string),
           },
         }

@@ -24,10 +24,10 @@
           .postCardWrapMiddle {
             display: flex;
             width: calc(50% - 30px);
-            // height: 100%;
+
             flex-direction: column;
             justify-content: space-between;
-            // border-bottom: 1px rgba(218, 218, 218, 1) solid;
+
             margin-right: 15px;
             .postCardWrapUp {
               display: flex;
@@ -76,7 +76,6 @@
 
               .postCardWrapDown {
                 display: none;
-                // display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 margin-bottom: 40px;

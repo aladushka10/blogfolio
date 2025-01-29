@@ -47,6 +47,20 @@ interface IPopUp {
   }
 }
 
+interface IPagination {
+  pagination: {
+    posts: IPostCard[]
+    totalItems: number
+    currentPage: number
+    itemsPerPage: number
+    searchQueryTitle: string
+    searchQuery: string
+    ordering: string
+    loading: boolean
+    error: string | null
+  }
+}
+
 const Search = () => {
   const { likes, dislikes } = useSelector((state: ICounter) => state.counter)
   const dispatch = useDispatch()
@@ -62,10 +76,10 @@ const Search = () => {
     totalItems,
     searchQuery,
     ordering,
-  } = useSelector((state) => state.pagination)
+  } = useSelector((state: IPagination) => state.pagination)
 
   const searchQueryTitle = useSelector(
-    (state) => state.pagination.searchQueryTitle
+    (state: IPagination) => state.pagination.searchQueryTitle
   )
 
   const navigate = useNavigate()

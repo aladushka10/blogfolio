@@ -11,6 +11,9 @@ interface ILogin {
   password: string
 }
 
+interface ISignIn {
+  signIn: { auth: boolean; isLoading: boolean; error: null | string }
+}
 const SignIn = () => {
   const [loginData, setLoginData] = useState<ILogin>({
     email: "",
@@ -18,7 +21,7 @@ const SignIn = () => {
   })
 
   const { pathname } = (useLocation().state || { from: "/" }).from
-  const { auth } = useSelector((state) => state.signIn)
+  const { auth } = useSelector((state: ISignIn) => state.signIn)
   const navigate = useNavigate()
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

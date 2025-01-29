@@ -1,14 +1,18 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { checkValidToken } from "../../store/SignInSlice"
+
+interface ISignIn {
+  signIn: { auth: boolean; isLoading: boolean; error: null | string }
+}
 
 const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(checkValidToken())
   }, [])
-  const { auth } = useSelector((state: any) => state.signIn)
+  const { auth } = useSelector((state: ISignIn) => state.signIn)
   if (!auth) {
     return <Navigate to="/sign-in" />
   }

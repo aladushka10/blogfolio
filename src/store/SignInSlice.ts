@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-let refreshInterval: null = null
+let refreshInterval: null | number = null
 export const signInUser = createAsyncThunk(
   "signIn/signInUser",
   async (userLoginData, { rejectWithValue, dispatch }) => {

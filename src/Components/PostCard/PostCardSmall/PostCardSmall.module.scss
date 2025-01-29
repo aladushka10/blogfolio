@@ -97,6 +97,10 @@
         justify-content: space-between;
         align-items: center;
         width: 64px;
+        .faBookmark {
+          background-color: transparent;
+          border: none;
+        }
       }
     }
   }

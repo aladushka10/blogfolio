@@ -63,7 +63,13 @@ const SignIn = () => {
               <Link to={"/"} className={style.forgotPsw}>
                 Forgot password?
               </Link>
-              <button type="submit" className={style.signInBtn}>
+              <button
+                onClick={() => {
+                  navigate("/success")
+                }}
+                type="submit"
+                className={style.signInBtn}
+              >
                 Sign In
               </button>
 

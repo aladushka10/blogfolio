@@ -21,6 +21,7 @@ import {
 import Title from "../../Components/Title/Title"
 import { openPopUp, closePopUp } from "../../store/popUpSlice"
 import PopUp from "../../Components/PopUp/PopUp"
+import { toggleFavorite } from "../../store/postSlice"
 
 interface IPostCard {
   id: number
@@ -124,72 +125,90 @@ const Search = () => {
       <div className={style.container}>
         <Title title={`Search results "${searchQueryTitle}"`} />
         <div className={style.postsCardWrap}>
-          {posts.map(({ id, image, date, text, title, index }: IPostCard) => (
-            <div key={id}>
-              <div className={style.postCardWrap}>
-                <div className={style.imgTitleWrap}>
-                  <div className={style.imgWrap}>
-                    <img
-                      className={style.postCardImg}
-                      onClick={() => dispatch(openPopUp(id))}
-                      src={image}
-                    />
-                    {isOpen && postId === id && (
-                      <PopUp
-                        id={id}
-                        image={image}
-                        date={date}
-                        title={title}
-                        text={text}
-                        isFavorite={false}
-                        close={() => dispatch(closePopUp())}
+          {posts.map(
+            ({ id, image, date, text, title, isFavorite }: IPostCard) => (
+              <div key={id}>
+                <div className={style.postCardWrap}>
+                  <div className={style.imgTitleWrap}>
+                    <div className={style.imgWrap}>
+                      <img
+                        className={style.postCardImg}
+                        onClick={() => dispatch(openPopUp(id))}
+                        src={image}
                       />
-                    )}
-                  </div>
-                  <div className={style.dateTitleWrap}>
-                    <div className={style.postCardDate}>{date}</div>
-                    <div className={style.postCardTitle}>{title}</div>
-                  </div>
-                </div>
-                <div className={style.postCardWrapDown}>
-                  <div className={style.thumbsWrap}>
-                    <div className={style.thumbsUpWrap}>
-                      <FontAwesomeIcon
-                        onClick={() => dispatch(incrementLike())}
-                        cursor={"pointer"}
-                        icon={faThumbsUp}
-                        style={{ fontSize: "25px" }}
-                      />
-                      <div>{likes}</div>
+                      {isOpen && postId === id && (
+                        <PopUp
+                          id={id}
+                          image={image}
+                          date={date}
+                          title={title}
+                          text={text}
+                          isFavorite={false}
+                          close={() => dispatch(closePopUp())}
+                        />
+                      )}
                     </div>
-                    <div className={style.thumbsDownWrap}>
-                      <FontAwesomeIcon
-                        onClick={() => dispatch(incrementDislike())}
-                        cursor={"pointer"}
-                        icon={faThumbsDown}
-                        style={{ fontSize: "25px" }}
-                      />
-                      <div>{dislikes}</div>
+                    <div className={style.dateTitleWrap}>
+                      <div className={style.postCardDate}>{date}</div>
+                      <div className={style.postCardTitle}>{title}</div>
                     </div>
                   </div>
-                  <div className={style.saveDotsWrap}>
-                    <div className={style.saveDots}>
-                      <FontAwesomeIcon
-                        icon={faBookmark}
-                        style={{ fontSize: "25px" }}
-                        cursor={"pointer"}
-                      />
-                      <FontAwesomeIcon
-                        icon={faEllipsisH}
-                        style={{ fontSize: "25px" }}
-                        cursor={"pointer"}
-                      />
+                  <div className={style.postCardWrapDown}>
+                    <div className={style.thumbsWrap}>
+                      <div className={style.thumbsUpWrap}>
+                        <FontAwesomeIcon
+                          onClick={() => dispatch(incrementLike())}
+                          cursor={"pointer"}
+                          icon={faThumbsUp}
+                          style={{ fontSize: "25px" }}
+                        />
+                        <div>{likes}</div>
+                      </div>
+                      <div className={style.thumbsDownWrap}>
+                        <FontAwesomeIcon
+                          onClick={() => dispatch(incrementDislike())}
+                          cursor={"pointer"}
+                          icon={faThumbsDown}
+                          style={{ fontSize: "25px" }}
+                        />
+                        <div>{dislikes}</div>
+                      </div>
+                    </div>
+                    <div className={style.saveDotsWrap}>
+                      <div className={style.saveDots}>
+                        <button
+                          className={style.faBookmark}
+                          onClick={() => {
+                            dispatch(
+                              toggleFavorite({
+                                id,
+                                image,
+                                text,
+                                date,
+                                title,
+                                isFavorite,
+                              })
+                            )
+                          }}
+                        >
+                          <FontAwesomeIcon
+                            icon={faBookmark}
+                            style={{ fontSize: "25px" }}
+                            cursor={"pointer"}
+                          />
+                        </button>
+                        <FontAwesomeIcon
+                          icon={faEllipsisH}
+                          style={{ fontSize: "25px" }}
+                          cursor={"pointer"}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
         <div className={style.numbersWrapper}>
           <div className={style.leftArrowWrap}>

@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { incrementDislike, incrementLike } from "../../store/counterSlice"
 
 import { getPostInfo } from "../../store/selectedPostSlice"
+import { toggleFavorite } from "../../store/postSlice"
 
 interface IPostCard {
   id: number
@@ -96,7 +97,12 @@ const SelectedPost = () => {
                   />
                 </button>
               </div>
-              <button className={style.favoriteWrap}>
+              <button
+                onClick={() => {
+                  dispatch(toggleFavorite(post))
+                }}
+                className={style.favoriteWrap}
+              >
                 <FontAwesomeIcon
                   icon={faBookmark}
                   style={{ fontSize: "25px" }}

@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { getMyPosts } from "../../store/myPostsSlice"
 import PostCardMiddle from "../../Components/PostCard/PostCardMiddle/PostCardMiddle"
 import style from "./MyPosts.module.scss"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { setPage } from "../../store/paginationSlice"
 import PostCardBig from "../../Components/PostCard/PostCardBig/PostCardBig"
 import PostCardSmall from "../../Components/PostCard/PostCardSmall/PostCardSmall"
+import { ReactComponent as LeftArrow } from "../../assets/left_arrow.svg"
+import { ReactComponent as RightArrow } from "../../assets/right_arrow.svg"
+import Title from "../../Components/Title/Title"
 
 interface IPostCard {
   id: number
@@ -77,59 +80,65 @@ const MyPosts = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className={style.postsCardWrap}>
-            {myPosts.map(({ id, image, date, text, title }: IPostCard) => (
-              <div key={id}>
-                <div className={style.postCardWrap}>
-                  <div className={style.postCardWrapMiddleandLittle}>
-                    <div className={style.postCardWrapMiddles}>
-                      <PostCardMiddle
-                        id={id}
-                        image={image}
-                        date={date}
-                        title={title}
-                        text={text}
-                        isFavorite={false}
-                      />
+          <div className={style.container}>
+            <Link className={style.backHomeBtn} to={"/"}>
+              Back to Home
+            </Link>
+            <Title title={"My Posts"} />
+            <div className={style.postsCardWrap}>
+              {myPosts.map(({ id, image, date, text, title }: IPostCard) => (
+                <div key={id}>
+                  <div className={style.postCardWrap}>
+                    <div className={style.postCardWrapMiddleandLittle}>
+                      <div className={style.postCardWrapMiddles}>
+                        <PostCardMiddle
+                          id={id}
+                          image={image}
+                          date={date}
+                          title={title}
+                          text={text}
+                          isFavorite={false}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div className={style.numbersWrapper}>
-            <div className={style.leftArrowWrap}>
-              <button
-                className={style.leftArrow}
-                onClick={handlePrevious}
-                disabled={currentPage === 1}
-              >
-                <LeftArrow className={style.leftArrowSvg} />
-              </button>
-              <button
-                className={style.prevWrap}
-                onClick={handlePrevious}
-                disabled={currentPage === 1}
-              >
-                Prev
-              </button>
+              ))}
             </div>
-            <div className={style.pageNubmers}>{renderPageNumber()}</div>
-            <div className={style.rightArrowWrap}>
-              <button
-                className={style.nextWrap}
-                onClick={handleNext}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
-              <button
-                className={style.rightArrow}
-                onClick={handleNext}
-                disabled={currentPage === totalPages}
-              >
-                <RightArrow className={style.rightArrowSvg} />
-              </button>
+            <div className={style.numbersWrapper}>
+              <div className={style.leftArrowWrap}>
+                <button
+                  className={style.leftArrow}
+                  onClick={handlePrevious}
+                  disabled={currentPage === 1}
+                >
+                  <LeftArrow className={style.leftArrowSvg} />
+                </button>
+                <button
+                  className={style.prevWrap}
+                  onClick={handlePrevious}
+                  disabled={currentPage === 1}
+                >
+                  Prev
+                </button>
+              </div>
+              <div className={style.pageNubmers}>{renderPageNumber()}</div>
+              <div className={style.rightArrowWrap}>
+                <button
+                  className={style.nextWrap}
+                  onClick={handleNext}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+                <button
+                  className={style.rightArrow}
+                  onClick={handleNext}
+                  disabled={currentPage === totalPages}
+                >
+                  <RightArrow className={style.rightArrowSvg} />
+                </button>
+              </div>
             </div>
           </div>
         </>

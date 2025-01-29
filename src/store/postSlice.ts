@@ -39,8 +39,12 @@ const postSlice = createSlice({
     },
     toggleFavorite: (state, action) => {
       const obj = action.payload
-      if (state.favorites.filter((x: any) => x.id === obj.id).length === 0) {
+      const index = state.favorites.findIndex((x: any) => x.id === obj.id)
+
+      if (index === -1) {
         state.favorites.push(obj)
+      } else {
+        state.favorites.splice(index, 1)
       }
     },
   },
